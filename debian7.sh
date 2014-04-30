@@ -211,7 +211,7 @@ chmod +x userexpired.sh
 chmod +x userlimit.sh
 chmod +x autokill.sh
 chmod +x dropmon.sh
-chmod+x expire.sh
+chmod +x expire.sh
 
 # finishing
 chown -R www-data:www-data /home/vps/public_html
