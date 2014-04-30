@@ -25,10 +25,12 @@ screenfetch
 ./ps_mem.py  
 ./speedtest_cli.py --share  
 ./bench-network.sh  
-userlogin (Melihat user openssh & dropbear yang login)  
-userexpired (Lock password user expired)  
-userlimit 2 (Melimit max 2 login)  
-dropmon [port] contoh: dropmon 443  
+./userlogin.sh (Melihat user openssh & dropbear yang login)  
+./userexpired.sh (Lock password user expired)  
+./userlimit.sh 2 (Melimit max 2 login)  
+./dropmon.sh [port] contoh: dropmon 443  
+./expire.sh (Melihat expire date user)   
+
 
 Fitur lain  
 ----------  
