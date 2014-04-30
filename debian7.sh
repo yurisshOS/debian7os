@@ -194,6 +194,7 @@ wget -O userexpired.sh "https://raw.github.com/yurisshOS/debian7os/master/userex
 wget -O userlimit.sh "https://raw.github.com/yurisshOS/debian7os/master/userlimit.sh"
 wget -O expire.sh "https://raw.github.com/yurisshOS/debian7os/master/expire.sh"
 wget -O autokill.sh "https://raw.github.com/yurisshOS/debian7os/master/autokill.sh"
+wget -O /etc/issue.net "https://raw.github.com/yurisshOS/debian7os/master/banner"
 echo "@reboot root /root/userexpired.sh" > /etc/cron.d/userexpired
 echo "@reboot root /root/userlimit.sh" > /etc/cron.d/userlimit
 echo "0 */6 * * * root /sbin/reboot" > /etc/cron.d/reboot
