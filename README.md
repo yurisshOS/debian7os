@@ -3,11 +3,11 @@ Original Script for VPS Debian 7
 Service  
 -------  
 OpenVPN  : TCP 1194 (client config : http://IPVPS:81/client.tar)  
-OpenSSH  : 22, 80
-Dropbear : 443
-Squid3   : 8080 (limit to IP VPS)  
-Badvpn   : badvpn-udpgw port 7300  
-Nginx    : 81  
+OpenSSH : 22, 80  
+Dropbear : 443  
+Squid3 : 8080 (limit to IP VPS)  
+Badvpn : badvpn-udpgw port 7300  
+Nginx : 81  
   
 Tools  
 -----  
@@ -28,9 +28,8 @@ screenfetch
 ./userlogin.sh (Melihat user openssh & dropbear yang login)  
 ./userexpired.sh (Lock password user expired)  
 ./userlimit.sh 2 (Melimit max 2 login)  
-./dropmon.sh [port] contoh: dropmon 443  
-./expire.sh (Melihat expire date user)   
-
+./expire.sh (Melihat tanggal expired user)  
+sh dropmon [port] contoh: sh dropmon 443  
 
 Fitur lain  
 ----------  
