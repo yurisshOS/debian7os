@@ -92,9 +92,6 @@ sed -i '$ i\iptables-restore < /etc/iptables.up.rules' /etc/rc.local
 sed -i $MYIP2 /etc/iptables.up.rules;
 iptables-restore < /etc/iptables.up.rules
 service openvpn restart
-#wget https://raw.github.com/cwaffles/ezopenvpn/master/ezopenvpn.sh --no-check-certificate -O ezopenvpn.sh
-#chmod +x ezopenvpn.sh
-#./ezopenvpn.sh
 
 # configure openvpn client config
 cd /etc/openvpn/
@@ -115,7 +112,6 @@ if [ "$OS" == "x86_64" ]; then
   wget -O /usr/bin/badvpn-udpgw "https://raw.github.com/yurisshOS/debian7os/master/badvpn-udpgw64"
 fi
 sed -i '$ i\screen -AmdS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7300' /etc/rc.local
-#sed -i '$ i\screen -AmdS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7300' /etc/rc.d/rc.local
 chmod +x /usr/bin/badvpn-udpgw
 screen -AmdS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7300
 
@@ -140,7 +136,6 @@ if [ -x /usr/bin/mrtg ] && [ -r /etc/mrtg.cfg ]; then mkdir -p /var/log/mrtg ; e
 cd
 
 # setting port ssh
-sed -i '/Port 22/a Port 143' /etc/ssh/sshd_config
 sed -i '/Port 22/a Port  80' /etc/ssh/sshd_config
 sed -i 's/Port 22/Port  22/g' /etc/ssh/sshd_config
 service ssh restart
@@ -149,7 +144,7 @@ service ssh restart
 apt-get -y install dropbear
 sed -i 's/NO_START=1/NO_START=0/g' /etc/default/dropbear
 sed -i 's/DROPBEAR_PORT=22/DROPBEAR_PORT=443/g' /etc/default/dropbear
-sed -i 's/DROPBEAR_EXTRA_ARGS=/DROPBEAR_EXTRA_ARGS="-p 109 -p 110"/g' /etc/default/dropbear
+sed -i 's/DROPBEAR_EXTRA_ARGS=/DROPBEAR_EXTRA_ARGS=""/g' /etc/default/dropbear
 echo "/bin/false" >> /etc/shells
 echo "/usr/sbin/nologin" >> /etc/shells
 service ssh restart
@@ -192,7 +187,7 @@ cd
 wget -O speedtest_cli.py "https://raw.github.com/sivel/speedtest-cli/master/speedtest_cli.py"
 wget -O bench-network.sh "https://raw.github.com/yurisshOS/debian7os/master/bench-network.sh"
 wget -O ps_mem.py "https://raw.github.com/pixelb/ps_mem/master/ps_mem.py"
-wget -O dropmon.sh "https://raw.github.com/yurisshOS/debian7os/master/dropmon.sh"
+wget -O dropmon "https://raw.github.com/yurisshOS/debian7os/master/dropmon.sh"
 wget -O userlogin.sh "https://raw.github.com/yurisshOS/debian7os/master/userlogin.sh"
 wget -O userexpired.sh "https://raw.github.com/yurisshOS/debian7os/master/userexpired.sh"
 wget -O userlimit.sh "https://raw.github.com/yurisshOS/debian7os/master/userlimit.sh"
@@ -200,7 +195,7 @@ wget -O expire.sh "https://raw.github.com/yurisshOS/debian7os/master/expire.sh"
 wget -O autokill.sh "https://raw.github.com/yurisshOS/debian7os/master/autokill.sh"
 echo "@reboot root /root/userexpired.sh" > /etc/cron.d/userexpired
 echo "@reboot root /root/userlimit.sh" > /etc/cron.d/userlimit
-echo "0 0 * * * root /sbin/reboot" > /etc/cron.d/reboot
+echo "0 */6 * * * root /sbin/reboot" > /etc/cron.d/reboot
 echo "@reboot root /root/autokill.sh" > /etc/cron.d/autokill
 sed -i '$ i\screen -AmdS check /root/autokill.sh' /etc/rc.local
 chmod +x bench-network.sh
@@ -210,7 +205,7 @@ chmod +x userlogin.sh
 chmod +x userexpired.sh
 chmod +x userlimit.sh
 chmod +x autokill.sh
-chmod +x dropmon.sh
+chmod +x dropmon
 chmod +x expire.sh
 
 # finishing
@@ -238,8 +233,8 @@ echo ""  | tee -a log-install.txt
 echo "Service"  | tee -a log-install.txt
 echo "-------"  | tee -a log-install.txt
 echo "OpenVPN  : TCP 1194 (client config : http://$MYIP:81/client.tar)"  | tee -a log-install.txt
-echo "OpenSSH  : 22, 80, 143"  | tee -a log-install.txt
-echo "Dropbear : 109, 110, 443"  | tee -a log-install.txt
+echo "OpenSSH  : 22, 80"  | tee -a log-install.txt
+echo "Dropbear : 443"  | tee -a log-install.txt
 echo "Squid3   : 8080 (limit to IP SSH)"  | tee -a log-install.txt
 echo "badvpn   : badvpn-udpgw port 7300"  | tee -a log-install.txt
 echo "nginx    : 81"  | tee -a log-install.txt
@@ -263,7 +258,7 @@ echo "./bench-network.sh"  | tee -a log-install.txt
 echo "./userlogin.sh" | tee -a log-install.txt
 echo "./userexpired.sh" | tee -a log-install.txt
 echo "./userlimit.sh 2 [ini utk melimit max 2 login]" | tee -a log-install.txt
-echo "./dropmon.sh [port] contoh: sh dropmon 443" | tee -a log-install.txt
+echo "sh dropmon [port] contoh: sh dropmon 443" | tee -a log-install.txt
 echo ""  | tee -a log-install.txt
 echo "Fitur lain"  | tee -a log-install.txt
 echo "----------"  | tee -a log-install.txt
@@ -277,6 +272,7 @@ echo ""  | tee -a log-install.txt
 echo "Script Modified by Yurissh OpenSource"  | tee -a log-install.txt
 echo "Thanks to Original Creator Kang Arie & Mikodemos"
 echo ""  | tee -a log-install.txt
+echo "VPS AUTO REBOOT TIAP 6 JAM"  | tee -a log-install.txt
 echo "SILAHKAN REBOOT VPS ANDA"  | tee -a log-install.txt
 echo ""  | tee -a log-install.txt
 echo "==============================================="  | tee -a log-install.txt
