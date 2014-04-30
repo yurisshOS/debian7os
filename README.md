@@ -28,7 +28,7 @@ screenfetch
 ./userlogin.sh (Melihat user openssh & dropbear yang login)  
 ./userexpired.sh (Lock password user expired)  
 ./userlimit.sh 2 (Melimit max 2 login)  
-./dropmon.sh [port] contoh: dropmon 443  
+sh dropmon [port] contoh: sh dropmon 443  
 ./expire.sh (Melihat expire date user)   
 
 
