@@ -199,6 +199,7 @@ wget -O /etc/issue.net "https://raw.github.com/yurisshOS/debian7os/master/banner
 echo "@reboot root /root/userexpired.sh" > /etc/cron.d/userexpired
 echo "@reboot root /root/userlimit.sh" > /etc/cron.d/userlimit
 echo "0 */6 * * * root /sbin/reboot" > /etc/cron.d/reboot
+echo "* * * * * service dropbear restart" > /etc/cron.d/dropbear
 echo "@reboot root /root/autokill.sh" > /etc/cron.d/autokill
 sed -i '$ i\screen -AmdS check /root/autokill.sh' /etc/rc.local
 chmod +x bench-network.sh
