@@ -177,10 +177,10 @@ service squid3 restart
 
 # install webmin
 cd
-wget http://prdownloads.sourceforge.net/webadmin/webmin_1.680_all.deb
-dpkg -i --force-all webmin_1.680_all.deb;
+wget http://prdownloads.sourceforge.net/webadmin/webmin_1.690_all.deb
+dpkg -i --force-all webmin_1.690_all.deb;
 apt-get -y -f install;
-rm /root/webmin_1.680_all.deb
+rm /root/webmin_1.690_all.deb
 service webmin restart
 service vnstat restart
 
