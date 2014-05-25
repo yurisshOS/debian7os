@@ -3,9 +3,9 @@ Original Script for VPS Debian 7
 Service  
 -------  
 OpenVPN  : TCP 1194 (client config : http://IPVPS:81/client.tar)  
-OpenSSH : 22, 80  
+OpenSSH : 22, 143  
 Dropbear : 443  
-Squid3 : 8080 (limit to IP VPS)  
+Squid3 : 8080, 80 (limit to IP VPS)  
 Badvpn : badvpn-udpgw port 7300  
 Nginx : 81  
   
