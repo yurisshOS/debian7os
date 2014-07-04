@@ -37,5 +37,9 @@ do
         fi
 done
 
+echo "Checking PPTP Login"
+echo "-------------------"
+last | grep ppp | grep still
+
 echo "-----------------------------------------------"
 echo "Script Modified by Yurissh OpenSource";
