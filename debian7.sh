@@ -118,7 +118,7 @@ screen -AmdS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7300
 
 # install mrtg
 wget -O /etc/snmp/snmpd.conf "https://raw.github.com/yurisshOS/debian7os/master/snmpd.conf"
-wget -O /root/mrtg-mem.sh "http://aemrhabibin.tk:81/Script/mrtg-mem.sh"
+wget -O /root/mrtg-mem.sh "https://raw.github.com/yurisshOS/debian7os/master/mrtg-mem.sh"
 chmod +x /root/mrtg-mem.sh
 cd /etc/snmp/
 sed -i 's/TRAPDRUN=no/TRAPDRUN=yes/g' /etc/default/snmpd
