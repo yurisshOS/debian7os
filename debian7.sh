@@ -191,7 +191,7 @@ cd
 wget http://prdownloads.sourceforge.net/webadmin/webmin_1.700_all.deb
 dpkg -i --force-all webmin_1.700_all.deb;
 apt-get -y -f install;
-rm /root/webmin_1.690_all.deb
+rm /root/webmin_1.700_all.deb
 service webmin restart
 service vnstat restart
 
