@@ -154,9 +154,9 @@ service dropbear restart
 
 # upgrade dropbear 2014
 apt-get install zlib1g-dev
-wget https://matt.ucc.asn.au/dropbear/releases/dropbear-2014.63.tar.bz2
-bzip2 -cd dropbear-2014.63.tar.bz2  | tar xvf -
-cd dropbear-2014.63
+wget https://matt.ucc.asn.au/dropbear/releases/dropbear-2014.66.tar.bz2
+bzip2 -cd dropbear-2014.66.tar.bz2  | tar xvf -
+cd dropbear-2014.66
 ./configure
 make && make install
 mv /usr/sbin/dropbear /usr/sbin/dropbear1
